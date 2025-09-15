@@ -68,6 +68,14 @@ body{
     color: var(--subheading-color);
 }
 
+.status-indicator{
+    font-size: 1rem;
+    margin-top: 10px;
+    font-weight: 500;
+    color: #28a745;
+    text-align: center;
+}
+
 /* suggestions list styling */
 .container .suggestions{
     display: flex;

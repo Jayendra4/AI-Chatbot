@@ -5,7 +5,7 @@ const promptInput = promptForm.querySelector(".prompt-input");
 const themeToggle = document.querySelector("#theme-toggle-btn");
 
 // api setup
-const API_KEY="AIzaSyBvL8fSikoWHIZfZobGKeBt2s57jQqAOfY"
+const API_KEY="AIzaSyCnxmI6fNShzKtM8jfTYn04HOhJZaKWiSI"
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
 let userMessage = "";
@@ -29,17 +29,17 @@ const typingEffect = (text, textElement, botMsgDiv) =>{
     let wordIndex = 0;
 
     // set an interval to type each word
-    const typingInterval = setInterval(()=>{
-        if(wordIndex < words.length){
-            textElement.textContent += (wordIndex === 0 ? "" : " ") + words[wordIndex++];
-            scrollToBottom();
-        } else{
-            clearInterval(typingInterval);
-            botMsgDiv.classList.remove("loading");
-            document.body.classList.remove("bot-responding");
-            
-        }
-    }, 40);
+
+const typingInterval = setInterval(()=>{
+    if(wordIndex < words.length){
+        textElement.textContent += (wordIndex === 0 ? "" : " ") + words[wordIndex++];
+        scrollToBottom();
+    } else{
+        clearInterval(typingInterval);
+        botMsgDiv.classList.remove("loading");
+        document.body.classList.remove("bot-responding");
+    }
+}, 15); // 15 milliseconds ka interval, jo pehle 40ms tha.
 }
 // make the api call and generate the bot's response
 const generateResponse = async(botMsgDiv) => {
@@ -91,14 +91,12 @@ const handleFormSubmit = (e) => {
     chatsContainer.appendChild(userMsgDiv);
     scrollToBottom();
 
-    setTimeout(()=>{
-        // generate bot message HTML and add in the chats container after 600ms
-    const botMsgHTML = `<img src="AIIMAGE.jpG" class="avatar"><p class= "message-text">Just a sec...</p>`;
-    const botMsgDiv = createMsgElement(botMsgHTML, "bot-message", "loading");
-    chatsContainer.appendChild(botMsgDiv);
-    scrollToBottom();
-    generateResponse(botMsgDiv);
-    }, 600);
+    // generate bot message HTML and add in the chats container
+const botMsgHTML = `<img src="AIIMAGE.jpG" class="avatar"><p class= "message-text">Just a sec...</p>`;
+const botMsgDiv = createMsgElement(botMsgHTML, "bot-message", "loading");
+chatsContainer.appendChild(botMsgDiv);
+scrollToBottom();
+generateResponse(botMsgDiv);
 }
 
 //handle suggestions click

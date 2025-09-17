@@ -56,3 +56,4 @@ key: "sk-proj-abc123...",
 ```
 
 That's it! Your chatbot will now automatically switch between Google and OpenAI when needed.
+

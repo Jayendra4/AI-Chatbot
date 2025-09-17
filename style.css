@@ -221,10 +221,15 @@ body.chats-active .container :where(.app-header, .suggestions){
     height: 100%;
     width: 100%;
     outline: none;
-    border: none;
+    border: none !important;
     font-size: 1rem;
     padding-left: 24px;
     color: var(--text-color);
+}
+
+.prompt-form .prompt-input:invalid{
+    border: none !important;
+    box-shadow: none !important;
 }
 
 .prompt-form .prompt-input::placeholder{
